@@ -1,10 +1,24 @@
 package com.example.ServiceChecker;
 
+import java.util.Map;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+// The @ConfigurationProperties is needed for the ConfigBasedDiscoveryPlugin
+@ConfigurationProperties(prefix = "external-services")
 public class ExternalServiceProperties {
 
-    //It acts as a structured parameter object (a container) holding the url and flow strings.
-    //This allows the HealthCheckExecutorService to accept a consistent object format rather than raw strings.
+    // Map to hold services defined in application.yaml
+    private Map<String, ServiceConfig> services;
 
+    public Map<String, ServiceConfig> getServices() {
+        return services;
+    }
+
+    public void setServices(Map<String, ServiceConfig> services) {
+        this.services = services;
+    }
+
+    // ... ServiceConfig inner class from previous turns must also be here ...
     public static class ServiceConfig {
         private String url;
         private String flow;

@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: ServiceChecker
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,* # Include all endpoints, but specifically health
